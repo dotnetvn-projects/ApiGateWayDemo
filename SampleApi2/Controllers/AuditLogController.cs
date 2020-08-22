@@ -7,7 +7,6 @@ using System.Linq;
 namespace SampleApi2.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     [ApiVersion("1.0")]
     [Route("v{v:apiVersion}/[controller]")]
     public class AuditLogController : ControllerBase

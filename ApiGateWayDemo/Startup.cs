@@ -24,10 +24,12 @@ namespace ApiGateWayDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddOcelot(Configuration).
-                AddConsul().AddSingletonDefinedAggregator<UserAuditLogDefinedAggregator>();
+
             //services.AddOcelot(Configuration).
-            //    AddConsul();
+            //    AddConsul().AddSingletonDefinedAggregator<UserAuditLogDefinedAggregator>();
+
+            services.AddOcelot(Configuration).
+                AddConsul();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +49,9 @@ namespace ApiGateWayDemo
                     await context.Response.WriteAsync("Hello World!. I am API Gateway :)");
                 });
             });
+
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             app.UseOcelot().Wait();
            
         }
